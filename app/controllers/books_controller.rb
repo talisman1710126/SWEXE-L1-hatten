@@ -1,7 +1,11 @@
 class BooksController < ApplicationController
-  # 一覧
+  SORTABLE_COLUMNS = %w[title author published_year].freeze
+
+  # 一覧（並べ替え対応）
   def index
-    @books = Book.all
+    sort      = SORTABLE_COLUMNS.include?(params[:sort]) ? params[:sort] : "id"
+    direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    @books = Book.order(sort => direction)
   end
 
   # 詳細
