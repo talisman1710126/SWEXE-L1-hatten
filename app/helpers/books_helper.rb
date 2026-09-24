@@ -3,7 +3,7 @@ module BooksHelper
   def sort_links(column)
     %w[asc desc].map { |direction|
       active = params[:sort] == column && params[:direction] == direction
-      link_to (direction == "asc" ? "△" : "▽"),
+      link_to (direction == "asc" ? "▲" : "▼"),
               books_path(sort: column, direction: direction),
               title: (direction == "asc" ? "昇順" : "降順"),
               style: "text-decoration:none; font-size:0.85em; padding:1px 4px; margin-left:2px; border-radius:4px;" +
